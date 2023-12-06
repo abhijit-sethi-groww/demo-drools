@@ -28,17 +28,12 @@ public class FileUploadHandlerServiceImpl implements FileUploadHandlerService {
         }
     }
     @Override
-    public void handleFileUpload() {
-        log.info("I am here");
-        FileUploadDto fileUploadDto = FileUploadDto.builder().fileName("CAN YOU PARSE THIS").numRows(100).build();
+    public void handleFileUpload(FileUploadDto fileUploadDto) {
         applyRules(fileUploadDto);
-
-        FileUploadDto fileUploadDto2 = FileUploadDto.builder().fileName("ABC").numRows(100).build();
-        applyRules(fileUploadDto2);
     }
 
     private void applyRules(FileUploadDto fileUploadDto) {
         parseFileUploadDto(fileUploadDto);
-        log.info("{} parsed response", fileUploadDto);
+        log.info("parsed response - {}", fileUploadDto);
     }
 }

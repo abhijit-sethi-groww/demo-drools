@@ -15,7 +15,8 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan("com.drools.sample.drools.poc")
 public class FileUploadRulesConfiguration {
 
-    private static final String drlFile = "ParseBankStatement.drl";
+    private static final String DrlFile = "ParseBankStatement.drl";
+    public static final String DrlFile2 = "JavaParseBankStatement.drl";
 
     @Bean
     public KieServices getKieService(){
@@ -26,7 +27,8 @@ public class FileUploadRulesConfiguration {
         KieServices kieServices = getKieService();
 
         KieFileSystem kieFileSystem = kieServices.newKieFileSystem();
-        kieFileSystem.write(ResourceFactory.newClassPathResource(drlFile));
+        kieFileSystem.write(ResourceFactory.newClassPathResource(DrlFile));
+        kieFileSystem.write(ResourceFactory.newClassPathResource(DrlFile2));
         KieBuilder kieBuilder = kieServices.newKieBuilder(kieFileSystem);
         kieBuilder.buildAll();
         KieModule kieModule = kieBuilder.getKieModule();
