@@ -8,16 +8,22 @@ import org.kie.api.builder.KieModule;
 import org.kie.api.runtime.KieContainer;
 import org.kie.internal.io.ResourceFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@ComponentScan("com.drools.sample.drools.poc")
 public class FileUploadRulesConfiguration {
 
     private static final String drlFile = "ParseBankStatement.drl";
 
     @Bean
+    public KieServices getKieService(){
+        return KieServices.Factory.get();
+    }
+    @Bean
     public KieContainer kieContainer() {
-        KieServices kieServices = KieServices.Factory.get();
+        KieServices kieServices = getKieService();
 
         KieFileSystem kieFileSystem = kieServices.newKieFileSystem();
         kieFileSystem.write(ResourceFactory.newClassPathResource(drlFile));
