@@ -1,10 +1,11 @@
 dialect  "mvel"
 
 import com.drools.sample.drools.poc.dto.FileUploadDto;
+global com.drools.sample.drools.poc.dto.FileUploadDto response;
 
 rule "FileName is ABC?"
     when
         fileUploadDto:FileUploadDto(fileName == "ABC");
     then
-        fileUploadDto.setNumRows(-1);
+        response.setNumRows(-1);
 end
