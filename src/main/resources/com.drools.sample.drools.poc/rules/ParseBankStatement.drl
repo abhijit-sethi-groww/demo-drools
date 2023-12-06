@@ -1,0 +1,13 @@
+package com.drools.sample.drools.poc.rules;
+
+import com.drools.sample.drools.poc.dto.FileUploadDto;
+
+global com.drools.sample.drools.poc.dto.FileUploadDto fileUploadDto;
+dialect "mvel"
+
+rule "Validate File Format"
+    when
+        FileUploadDto(fileName ~= '[A-Za-z]+[0-9]+')
+    then
+        fileUploadDto.setStatus("VALID");
+end
