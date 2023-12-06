@@ -23,50 +23,9 @@ import java.util.List;
 @Slf4j
 public class FileUploadHandlerServiceImpl implements FileUploadHandlerService {
 
-    @Autowired KieServices kieServices;
-
-    private KieFileSystem getKieFileSystem() {
-        KieFileSystem kieFileSystem = kieServices.newKieFileSystem();
-        List<String> rules = Arrays.asList("com.drools.sample.drools.poc/rules/ParseBankStatement.drl");
-        for (String rule : rules) {
-            kieFileSystem.write(ResourceFactory.newClassPathResource(rule));
-        }
-        return kieFileSystem;
-    }
-
-    private void getKieRepository() {
-        final KieRepository kieRepository = kieServices.getRepository();
-        kieRepository.addKieModule(kieRepository::getDefaultReleaseId);
-    }
-
-    public KieSession getKieSession() {
-        KieBuilder kb = kieServices.newKieBuilder(getKieFileSystem());
-        kb.buildAll();
-
-        KieRepository kieRepository = kieServices.getRepository();
-        ReleaseId krDefaultReleaseId = kieRepository.getDefaultReleaseId();
-        KieContainer kieContainer = kieServices.newKieContainer(krDefaultReleaseId);
-
-        return kieContainer.newKieSession();
-    }
-
-    private void parseFileUploadDto(FileUploadDto fileUploadDto) {
-        KieSession kieSession = getKieSession();
-        try{
-            kieSession.insert(fileUploadDto);
-            kieSession.setGlobal(String.valueOf(fileUploadDto),"fileUploadDto");
-            kieSession.fireAllRules();
-        } finally {
-            kieSession.dispose();
-        }
-        fileUploadDto.getFileName();
-    }
-
     @Override
     public void handleFileUpload() {
         log.info("I am here");
         FileUploadDto fileUploadDto = FileUploadDto.builder().fileName("CAN YOU PARSE THIS").numRows(100).build();
-        parseFileUploadDto(fileUploadDto);
-        log.info("{} after parsing",fileUploadDto);
     }
 }
