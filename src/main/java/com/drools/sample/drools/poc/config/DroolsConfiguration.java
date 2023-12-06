@@ -1,6 +1,5 @@
 package com.drools.sample.drools.poc.config;
 
-import org.hibernate.annotations.CollectionId;
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieBuilder;
 import org.kie.api.builder.KieFileSystem;
@@ -13,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan("com.drools.sample.drools.poc")
-public class FileUploadRulesConfiguration {
+public class DroolsConfiguration {
 
     private static final String DrlFile = "ParseBankStatement.drl";
     public static final String DrlFile2 = "JavaParseBankStatement.drl";
