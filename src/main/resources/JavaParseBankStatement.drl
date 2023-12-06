@@ -1,9 +1,10 @@
 import com.drools.sample.drools.poc.dto.FileUploadDto;
+import com.drools.sample.drools.poc.enums.FileFormatStatus;
 global com.drools.sample.drools.poc.dto.FileUploadDto response;
 
 rule "File Length is 4"
     when
         fileUploadDto:FileUploadDto(getFileName().length() == 4);
     then
-        response.setNumRows(4444);
+        response.setStatus(FileFormatStatus.valueOf("VALID"));
 end

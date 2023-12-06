@@ -28,8 +28,9 @@ public class FileUploadHandlerServiceImpl implements FileUploadHandlerService {
         }
     }
     @Override
-    public void handleFileUpload(FileUploadDto fileUploadDto) {
+    public FileUploadDto handleFileUpload(FileUploadDto fileUploadDto) {
         applyRules(fileUploadDto);
+        return fileUploadDto;
     }
 
     private void applyRules(FileUploadDto fileUploadDto) {
