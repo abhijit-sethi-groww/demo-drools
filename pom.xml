@@ -56,20 +56,29 @@
 
 		<!--DROOLS-->
 		<dependency>
-			<groupId>org.kie</groupId>
-			<artifactId>kie-ci</artifactId>
-			<version>8.32.0.Final</version>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-core</artifactId>
+			<version>8.34.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-compiler</artifactId>
+			<version>8.34.0.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>drools-decisiontables</artifactId>
-			<version>8.32.0.Final</version>
+			<version>8.34.0.Final</version>
 		</dependency>
-
 		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpcore</artifactId>
-			<version>4.4.16</version>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-ci</artifactId>
+			<version>8.34.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.kie</groupId>
+			<artifactId>kie-spring</artifactId>
+			<version>7.73.0.Final</version>
 		</dependency>
 	</dependencies>
 
